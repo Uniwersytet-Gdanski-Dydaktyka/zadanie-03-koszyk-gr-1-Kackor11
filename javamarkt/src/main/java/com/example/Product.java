@@ -23,12 +23,19 @@ public class Product implements Comparable<Product> {
         this.discountPrice = discountPrice;
     }
 
+//    @Override
+//    public int compareTo(Product other) {
+//        if (other.getPrice().equals(this.getPrice())) {
+//            return this.name.compareTo(other.getName());
+//        }
+//        return Double.compare(other.getPrice(), this.getPrice());
+//    }
+
     @Override
     public int compareTo(Product other) {
-        if (other.getPrice().equals(this.getPrice())) {
-            return this.name.compareTo(other.getName());
-        }
-        return Double.compare(other.getPrice(), this.getPrice());
+        return Comparator.comparing(Product::getPrice).reversed()
+                .thenComparing(Product::getName)
+                .compare(this, other);
     }
 
     public String getCode() {
