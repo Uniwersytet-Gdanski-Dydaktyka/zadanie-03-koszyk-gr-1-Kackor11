@@ -38,9 +38,7 @@ public class Product implements Comparable<Product> {
                 .compare(this, other);
     }
 
-    public String getCode() {
-        return code;
-    }
+    public String getCode() { return code; }
 
     public String getName() {
         return name;
