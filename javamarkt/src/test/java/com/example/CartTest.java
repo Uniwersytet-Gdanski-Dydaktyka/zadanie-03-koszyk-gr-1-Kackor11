@@ -216,7 +216,7 @@ class CartTest {
     void shouldNotAddFreeCupIfTotalIs200OrLess() {
         // GIVEN
         Cart cart = new Cart();
-        cart.addProduct(new Product("P001", "Myszka", 150.00)); // Suma = 150.00
+        cart.addProduct(new Product("P001", "Myszka", 150.00));
 
         Promotion cupPromotion = new FreeCupPromotion();
 

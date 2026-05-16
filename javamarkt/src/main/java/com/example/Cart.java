@@ -25,7 +25,7 @@ public class Cart {
     public double getTotalPrice() {
         double res = 0;
         for (Product product : products) {
-            res += product.getPrice();
+            res += product.getDiscountPrice();
         }
         return res;
     }

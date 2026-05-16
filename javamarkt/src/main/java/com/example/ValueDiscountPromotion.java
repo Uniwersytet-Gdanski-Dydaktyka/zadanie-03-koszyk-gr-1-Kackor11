@@ -12,7 +12,7 @@ public class ValueDiscountPromotion implements Promotion {
          }
          List<Product> newProducts = new ArrayList<>();
          for (Product product : cart.getProducts()) {
-             newProducts.add(new Product(product.getCode(), product.getName(), product.getDiscountPrice(), product.getPrice() * 0.95));
+             newProducts.add(new Product(product.getCode(), product.getName(), product.getPrice(), product.getDiscountPrice() * 0.95));
          }
          cart.updateProducts(newProducts);
     }

@@ -1,0 +1,71 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class Product {
+  - code : String
+  - name : String
+  - price : double
+  - discountPrice : double
+  + Product(code: String, name: String, price: double)
+  + Product(code: String, name: String, price: double, discountPrice: double)
+  + compareTo(other: Product) : int
+  + getCode() : String
+  + getName() : String
+  + getPrice() : double
+  + getDiscountPrice() : double
+}
+
+class Cart {
+  - products : List<Product>
+  + Cart()
+  + addProduct(product: Product) : void
+  + getProducts() : List<Product>
+  + getTotalPrice() : double
+  + getCheapestProduct() : Product
+  + getPriciestProduct() : Product
+  + getNCheapestProducts(n: int) : List<Product>
+  + getNPriciestProducts(n: int) : List<Product>
+  + getSortedProducts() : List<Product>
+  + getSortedProducts(comparator: Comparator<Product>) : List<Product>
+  + updateProducts(newProducts: List<Product>) : void
+  + applyPromotion(promotion: Promotion) : void
+}
+
+interface Promotion {
+  + apply(cart: Cart) : void
+}
+
+class ValueDiscountPromotion {
+  + apply(cart: Cart) : void
+}
+
+class FreeCupPromotion {
+  + apply(cart: Cart) : void
+}
+
+class CouponDiscountPromotion {
+  - targetCode : String
+  + CouponDiscountPromotion(targetCode: String)
+  + apply(cart: Cart) : void
+}
+
+class TwoPlusOnePromotion {
+  + apply(cart: Cart) : void
+}
+
+class PromotionOptimizer {
+  + applyOptimalPromotions(originalCart: Cart, promotions: List<Promotion>) : Cart
+  - generatePermutations(list: List<Promotion>) : List<List<Promotion>>
+}
+
+Cart o-- Product : zawiera
+Cart ..> Promotion : używa
+ValueDiscountPromotion ..|> Promotion : implementuje
+FreeCupPromotion ..|> Promotion : implementuje
+CouponDiscountPromotion ..|> Promotion : implementuje
+TwoPlusOnePromotion ..|> Promotion : implementuje
+PromotionOptimizer ..> Cart : używa
+PromotionOptimizer ..> Promotion : używa
+
+@enduml
