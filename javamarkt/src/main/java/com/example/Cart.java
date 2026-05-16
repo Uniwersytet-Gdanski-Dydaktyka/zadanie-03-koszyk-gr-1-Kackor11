@@ -55,4 +55,21 @@ public class Cart {
                 .limit(n)
                 .toList();
     }
+
+    public List<Product> getSortedProducts() {
+        return products.stream().sorted().toList();
+    }
+
+    public List<Product> getSortedProducts(Comparator<Product> comparator) {
+        return products.stream().sorted(comparator).toList();
+    }
+
+    public void updateProducts(List<Product> newProducts) {
+        this.products.clear();
+        this.products.addAll(newProducts);
+    }
+
+    public void applyPromotion(Promotion promotion) {
+        promotion.apply(this);
+    }
 }
